@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<center><h1>Compra</h1></center>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Cantidad</th>
+      <th>Gasta</th>
+      <th>Product</th>
+      <th>Client</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buys.each do |buy| %>
+      <tr>
+        <td><%= buy.fecha_compra %></td>
+        <td><%= buy.cantidad %></td>
+        <td><%= buy.user.name %></td>
+        <td><%= buy.product %></td>
+        <td><%= buy.client.name %></td>
+        <td><%= link_to 'Show', buy %></td>
+        <td><%= link_to 'Edit', edit_buy_path(buy) %></td>
+        <td><%= link_to 'Destroy', buy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Buy', new_buy_path %>

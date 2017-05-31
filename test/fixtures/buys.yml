@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_compra: 2017-05-30
+  cantidad: 1
+  user: one
+  product: one
+  client: one
+
+two:
+  fecha_compra: 2017-05-30
+  cantidad: 1
+  user: two
+  product: two
+  client: two
