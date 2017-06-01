@@ -28,12 +28,14 @@
 
   <div class="field">
     <%= f.label :product_id %>
-    <%= f.text_field :product_id %>
+    <%= select("buy", "product_id", Product.all.collect {|p| [ p.name, p.id ] })%>
   </div>
 
   <div class="field">
-    <%= f.label :client_id %>
-    <%= f.text_field :client_id %>
+    <%= f.label 'Clientes' %>
+    <%=collection_check_boxes(:buy, :has_category_ids, @clients, :id, :name)%> 
+    
+
   </div>
 
   <div class="actions">

@@ -5,6 +5,7 @@ class BuysController < ApplicationController
   # GET /buys.json
   def index
     @buys = Buy.all
+
   end
 
   # GET /buys/1
@@ -15,6 +16,7 @@ class BuysController < ApplicationController
   # GET /buys/new
   def new
     @buy = Buy.new
+    @clients = Client.all
   end
 
   # GET /buys/1/edit
@@ -25,9 +27,14 @@ class BuysController < ApplicationController
   # POST /buys.json
   def create
     @buy = Buy.new(buy_params)
-
+    #raise @clients.to_yaml
+    @ids = params[:buy][:has_category_ids]
     respond_to do |format|
       if @buy.save
+        @ids.each do |id|
+          @buy.has_categories.create(client_id: id)
+        end
+        #Has_Category.new()
         format.html { redirect_to @buy, notice: 'Buy was successfully created.' }
         format.json { render :show, status: :created, location: @buy }
       else
@@ -69,6 +76,6 @@ class BuysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def buy_params
-      params.require(:buy).permit(:fecha_compra, :cantidad, :user_id, :product_id, :client_id)
+      params.require(:buy).permit(:fecha_compra, :cantidad, :user_id, :product_id, :has_category_ids => [:id])
     end
 end
